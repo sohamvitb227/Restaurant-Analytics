@@ -1,0 +1,413 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Analytics Dashboard</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            color: #333;
+        }
+
+        header {
+            background: #202c45;
+            color: white;
+            padding: 25px 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin-bottom: 8px;
+        }
+
+        header p {
+            color: #d5dce8;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 30px auto;
+        }
+
+        .notice {
+            background: #fff3cd;
+            border-left: 5px solid #e0a800;
+            padding: 15px;
+            margin-bottom: 25px;
+            border-radius: 5px;
+            line-height: 1.5;
+        }
+
+        .section-title {
+            margin: 30px 0 18px;
+            color: #202c45;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .card h3 {
+            color: #687386;
+            font-size: 15px;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: #e76f51;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .charts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .chart-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .chart-card h3 {
+            margin-bottom: 15px;
+            color: #202c45;
+        }
+
+        .chart-card img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .insights {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            line-height: 2;
+        }
+
+        .prediction-section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            max-width: 650px;
+            margin: auto;
+        }
+
+        .prediction-section label {
+            display: block;
+            margin: 18px 0 8px;
+            font-weight: bold;
+        }
+
+        .prediction-section select,
+        .prediction-section input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 15px;
+            background: white;
+        }
+
+        .prediction-section button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 14px;
+            border: none;
+            background: #e76f51;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .prediction-section button:hover {
+            background: #d65b3d;
+        }
+
+        #result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 19px;
+            font-weight: bold;
+            color: #202c45;
+            line-height: 1.5;
+        }
+
+        footer {
+            background: #202c45;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 22px 15px;
+            }
+
+            .container {
+                width: 94%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Restaurant Analytics Dashboard</h1>
+        <p>Data Analysis and Predictive Modelling</p>
+    </header>
+
+    <main class="container">
+
+        <div class="notice">
+            <strong>Dataset Notice:</strong>
+            This project uses the supplied restaurant dataset containing
+            9,551 restaurant records and 21 attributes. The analysis and
+            predictions are based on this dataset.
+        </div>
+
+        <h2 class="section-title">Project Overview</h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>Total Restaurants</h3>
+                <p>9,551</p>
+            </div>
+
+            <div class="card">
+                <h3>Dataset Attributes</h3>
+                <p>21</p>
+            </div>
+
+            <div class="card">
+                <h3>ML Models Evaluated</h3>
+                <p>3</p>
+            </div>
+
+            <div class="card">
+                <h3>Best Performing Model</h3>
+                <p>Random Forest</p>
+            </div>
+
+        </div>
+
+        <h2 class="section-title">Data Visualizations</h2>
+
+        <div class="charts">
+
+            <div class="chart-card">
+                <h3>Rating Distribution</h3>
+                <img src="/charts/rating_distribution_histogram.png"
+                     alt="Rating distribution chart">
+            </div>
+
+            <div class="chart-card">
+                <h3>Average Rating by City</h3>
+                <img src="/charts/average_rating_by_city.png"
+                     alt="Average rating by city">
+            </div>
+
+            <div class="chart-card">
+                <h3>Price Range vs Rating</h3>
+                <img src="/charts/price_range_vs_rating.png"
+                     alt="Price range versus rating">
+            </div>
+
+            <div class="chart-card">
+                <h3>Booking and Delivery vs Rating</h3>
+                <img src="/charts/booking_delivery_vs_rating.png"
+                     alt="Booking and delivery versus rating">
+            </div>
+
+            <div class="chart-card">
+                <h3>Correlation Heatmap</h3>
+                <img src="/charts/correlation_heatmap.png"
+                     alt="Correlation heatmap">
+            </div>
+
+            <div class="chart-card">
+                <h3>Popular Cuisines</h3>
+                <img src="/charts/popular_cuisines.png"
+                     alt="Popular cuisines chart">
+            </div>
+
+            <div class="chart-card">
+                <h3>Cuisine Ratings</h3>
+                <img src="/charts/cuisine_ratings.png"
+                     alt="Cuisine ratings chart">
+            </div>
+
+        </div>
+
+        <h2 class="section-title">Key Insights</h2>
+
+        <div class="insights">
+            <p>1. The dataset contains 9,551 restaurant records.</p>
+
+            <p>2. North Indian cuisine has the highest restaurant count
+               among the analysed cuisines.</p>
+
+            <p>3. Chinese cuisine is another widely represented cuisine.</p>
+
+            <p>4. Asian cuisine has the highest average rating among
+               the top 10 cuisines ranked by total votes.</p>
+
+            <p>5. Random Forest performed best among the three tested
+               regression models in the current evaluation.</p>
+
+            <p>6. The project uses feature engineering, data visualization,
+               customer preference analysis and predictive modelling.</p>
+        </div>
+
+        <h2 class="section-title">Restaurant Rating Prediction</h2>
+
+        <div class="prediction-section">
+
+            <h3>Predict Aggregate Rating</h3>
+
+            <p style="margin-top: 10px; color: #687386;">
+                Enter restaurant details to estimate its aggregate rating
+                using the trained Random Forest model.
+            </p>
+
+            <label for="booking">Table Booking</label>
+            <select id="booking">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <label for="delivery">Online Delivery</label>
+            <select id="delivery">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <label for="price">Price Range</label>
+            <select id="price">
+                <option value="1">1 - Budget</option>
+                <option value="2">2 - Moderate</option>
+                <option value="3">3 - Premium</option>
+                <option value="4">4 - Luxury</option>
+            </select>
+
+            <label for="cost">Average Cost for Two</label>
+            <input type="number" id="cost"
+                   min="0" step="any"
+                   placeholder="Enter average cost for two">
+
+            <label for="votes">Number of Votes</label>
+            <input type="number" id="votes"
+                   min="0" step="1"
+                   placeholder="Enter number of votes">
+
+            <button onclick="predictRating()">Predict Rating</button>
+
+            <div id="result"></div>
+
+        </div>
+
+    </main>
+
+    <footer>
+        <p>Restaurant Analytics Project | Data Analysis and Machine Learning</p>
+    </footer>
+
+    <script>
+
+        async function predictRating() {
+
+            const booking = document.getElementById("booking").value;
+            const delivery = document.getElementById("delivery").value;
+            const price = document.getElementById("price").value;
+            const cost = document.getElementById("cost").value;
+            const votes = document.getElementById("votes").value;
+
+            const result = document.getElementById("result");
+
+            if (cost === "" || votes === "") {
+                result.innerText =
+                    "Please enter average cost and number of votes.";
+                return;
+            }
+
+            if (Number(cost) < 0 || Number(votes) < 0 ||
+                !Number.isInteger(Number(votes))) {
+                result.innerText =
+                    "Enter a valid non-negative cost and whole number of votes.";
+                return;
+            }
+
+            result.innerText = "Predicting...";
+
+            try {
+
+                const response = await fetch("/predict", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        booking: booking,
+                        delivery: delivery,
+                        price: price,
+                        cost: cost,
+                        votes: votes
+                    })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || "Prediction failed");
+                }
+
+                result.innerText =
+                    "Predicted Aggregate Rating: " +
+                    data.prediction + " / 5";
+
+            } catch (error) {
+
+                result.innerText = "Error: " + error.message;
+
+            }
+        }
+
+    </script>
+
+</body>
+</html>
